@@ -18,6 +18,8 @@ import { MESSAGES } from "../constants/messages.js";
  */
 export const createProduct = async (req, res, next) => {
   try {
+    console.log("BODY:", req.body);
+console.log("FILES:", req.files);
     const product = await createProductService(
       req.body,
       req.files,
