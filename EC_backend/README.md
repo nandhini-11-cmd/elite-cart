@@ -468,7 +468,6 @@ POST    /api/auth/login
 
 ```
 GET     /api/categories
-GET     /api/categories/:slug
 POST    /api/categories
 PUT     /api/categories/:id
 DELETE  /api/categories/:id
