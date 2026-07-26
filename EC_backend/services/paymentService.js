@@ -131,16 +131,16 @@ export const verifyPayment = async (
     throw error;
   }
 
-  /**
-   * Save Payment Details
-   */
-  order.paymentId =
-    razorpay_payment_id;
+/**
+ * Save Payment Details
+ */
+order.razorpayPaymentId =
+  razorpay_payment_id;
 
-  order.paymentSignature =
-    razorpay_signature;
+order.razorpaySignature =
+  razorpay_signature;
 
-  await order.save();
+await order.save();
 
   /**
    * Complete Order
