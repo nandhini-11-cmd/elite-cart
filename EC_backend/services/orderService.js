@@ -8,7 +8,8 @@ import { MESSAGES } from "../constants/messages.js";
 /**
  * Checkout & Create Order
  */
-export const checkout = async (userId) => {
+export const checkout = async (userId,shippingAddress,
+  paymentMethod) => {
   // Get Selected Cart Items
   const cartItems = await Cart.find({
     user: userId,
@@ -71,22 +72,16 @@ export const checkout = async (userId) => {
     totalAmount += finalPrice * item.quantity;
   }
 
-  const order = await Order.create({
+const order = await Order.create({
   user: userId,
 
   orderItems,
 
-  shippingAddress: {
-    fullName: "Nandhini",
-    phone: "9876543210",
-    addressLine: "123 Main Street",
-    city: "Gobichettipalayam",
-    state: "Tamil Nadu",
-    pincode: "638452",
-    country: "India",
-  },
+  shippingAddress,
 
   totalAmount,
+
+  paymentMethod,
 
   paymentStatus: "Pending",
 

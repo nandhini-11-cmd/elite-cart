@@ -18,7 +18,14 @@ import { MESSAGES } from "../constants/messages.js";
  */
 export const checkout = async (req, res, next) => {
   try {
-    const order = await checkoutService(req.user._id);
+    const { shippingAddress, paymentMethod } =
+      req.body;
+
+    const order = await checkoutService(
+      req.user._id,
+      shippingAddress,
+      paymentMethod
+    );
 
     return successResponse(
       res,
