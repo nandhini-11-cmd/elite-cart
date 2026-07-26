@@ -120,7 +120,7 @@ export const getAllProducts = async (queryParams) => {
     maxPrice,
     sort,
     page = 1,
-    limit = 12,
+    limit = 18,
     featured,
   } = queryParams;
 
