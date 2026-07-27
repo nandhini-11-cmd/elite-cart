@@ -7,6 +7,7 @@ import {
   updateProduct as updateProductService,
   deleteProduct as deleteProductService,
   toggleFeaturedProduct as toggleFeaturedProductService,
+  getSellerProductById as getSellerProductByIdService,
 } from "../services/productService.js";
 
 import { successResponse } from "../utils/responseHandler.js";
@@ -123,6 +124,31 @@ export const getSellerProducts = async (
       STATUS_CODES.SUCCESS,
       MESSAGES.PRODUCTS_FETCHED,
       products
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+/**
+ * Get Seller Product By Id
+ */
+export const getSellerProductById = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const product =
+      await getSellerProductByIdService(
+        req.params.id,
+        req.user._id
+      );
+
+    return successResponse(
+      res,
+      STATUS_CODES.SUCCESS,
+      MESSAGES.PRODUCT_FETCHED,
+      product
     );
   } catch (error) {
     next(error);

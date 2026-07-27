@@ -309,6 +309,30 @@ export const getSellerProducts = async (
 };
 
 /**
+ * Get Seller Product By Id
+ */
+export const getSellerProductById = async (
+  productId,
+  sellerId
+) => {
+  const product = await Product.findOne({
+    _id: productId,
+    seller: sellerId,
+    isActive: true,
+  }).populate("category", "categoryName");
+
+  if (!product) {
+    const error = new Error(
+      MESSAGES.PRODUCT_NOT_FOUND
+    );
+    error.statusCode =
+      STATUS_CODES.NOT_FOUND;
+    throw error;
+  }
+
+  return product;
+};
+/**
  * Update Product
  */
 export const updateProduct = async (

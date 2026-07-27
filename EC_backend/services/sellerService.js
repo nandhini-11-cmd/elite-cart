@@ -93,23 +93,25 @@ let outForDeliveryOrders = 0;
     .slice(0, 5);
 
   return {
-    totalProducts,
-    activeProducts,
-    outOfStockProducts,
-    lowStockProducts,
+  totalProducts,
+  activeProducts,
+  outOfStockProducts,
+  lowStockProducts,
 
-    totalOrders: orders.length,
+  totalOrders: orders.length,
 
-    pendingOrders,
-    
-    shippedOrders,
-    deliveredOrders,
-    cancelledOrders,
+  pendingOrders,
+  confirmedOrders,
+  packedOrders,
+  shippedOrders,
+  outForDeliveryOrders,
+  deliveredOrders,
+  cancelledOrders,
 
-    totalRevenue,
+  totalRevenue,
 
-    recentOrders,
+  recentOrders,
 
-    topSellingProducts,
-  };
+  topSellingProducts,
+};
 };

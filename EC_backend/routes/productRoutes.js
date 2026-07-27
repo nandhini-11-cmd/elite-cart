@@ -9,6 +9,7 @@ import {
   updateProduct,
   deleteProduct,
   toggleFeaturedProduct,
+  getSellerProductById,
 } from "../controllers/productController.js";
 
 import { protect } from "../middleware/authMiddleware.js";
@@ -36,6 +37,12 @@ router.get(
   protect,
   authorize(ROLES.SELLER),
   getSellerProducts
+);
+router.get(
+  "/seller/:id",
+  protect,
+  authorize(ROLES.SELLER),
+  getSellerProductById
 );
 
 router.post(
