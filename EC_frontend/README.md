@@ -1,16 +1,113 @@
-# React + Vite
+# Elite Cart Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend of Elite Cart built using React.js and Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technologies
 
-## React Compiler
+- React.js
+- Vite
+- Tailwind CSS
+- Axios
+- React Router DOM
+- Formik
+- Yup
+- React Hot Toast
+- React Icons
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Buyer
+
+- Home Page
+- Categories
+- Products
+- Product Details
+- Search
+- Filters
+- Cart
+- Checkout
+- Orders
+- Wishlist UI
+
+### Seller
+
+- Dashboard
+- Product CRUD
+- Product Search
+- Pagination
+- Order Management
+- Update Order Status
+- Profile (UI)
+
+### Admin
+
+- Dashboard
+- Category CRUD
+- Product Management (Coming Soon)
+- User Management (Coming Soon)
+- Order Management (Coming Soon)
+- Profile (Coming Soon)
+
+---
+
+## Installation
+
+```bash
+npm install
+```
+
+Run
+
+```bash
+npm run dev
+```
+
+Build
+
+```bash
+npm run build
+```
+
+---
+
+## Environment Variables
+
+```env
+VITE_API_URL=
+VITE_RAZORPAY_KEY_ID=
+```
+
+---
+
+## Folder Structure
+
+```
+src
+│
+├── components
+├── context
+├── hooks
+├── layouts
+├── pages
+├── routes
+├── services
+├── utils
+```
+
+---
+
+## Responsive
+
+- Desktop
+- Tablet
+- Mobile
+
+---
+
+## Future Improvements
+
+- Wishlist Backend
