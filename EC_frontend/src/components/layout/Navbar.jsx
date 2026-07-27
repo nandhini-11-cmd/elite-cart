@@ -20,32 +20,13 @@ const Navbar = () => {
 const navigate = useNavigate();
 const navItems = !user
   ? [
-      {
-        label: "Home",
-        path: "/",
-      },
-      {
-        label: "Products",
-        path: "/products",
-      },
+      { label: "Home", path: "/" },
+      { label: "Products", path: "/products" },
     ]
   : [
-      {
-        label: "Home",
-        path: "/",
-      },
-      {
-        label: "Products",
-        path: "/products",
-      },
-      {
-        label: "Orders",
-        path: "/orders",
-      },
-      {
-        label: "Wishlist",
-        path: "/wishlist",
-      },
+      { label: "Home", path: "/" },
+      { label: "Products", path: "/products" },
+      { label: "Orders", path: "/orders" },
     ];
 const handleLogout = () => {
   logout();
@@ -244,34 +225,114 @@ const handleLogout = () => {
 
       {/* Mobile Menu */}
 
-      {mobileMenu && (
+     {/* Mobile Menu */}
 
-        <div
+{mobileMenu && (
+  <div className="lg:hidden border-t bg-white shadow-lg">
+
+    {/* Navigation */}
+
+    {navItems.map((item) => (
+      <NavLink
+        key={item.path}
+        to={item.path}
+        onClick={() => setMobileMenu(false)}
+        className="block px-5 py-4 border-b"
+      >
+        {item.label}
+      </NavLink>
+    ))}
+
+    {!user ? (
+      <div className="p-5 space-y-3">
+
+        <Link
+          to="/login"
+          onClick={() => setMobileMenu(false)}
           className="
-          lg:hidden
-          border-t
-          bg-white
+            block
+            text-center
+            border
+            border-blue-600
+            text-blue-600
+            py-3
+            rounded-xl
+            font-semibold
           "
         >
+          Login
+        </Link>
 
-          {navItems.map((item) => (
+        <Link
+          to="/register"
+          onClick={() => setMobileMenu(false)}
+          className="
+            block
+            text-center
+            bg-blue-600
+            text-white
+            py-3
+            rounded-xl
+            font-semibold
+          "
+        >
+          Register
+        </Link>
 
+      </div>
+    ) : (
+      <div className="border-t">
+
+        {user.role === ROLES.BUYER && (
+          <>
             <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={() =>
-                setMobileMenu(false)
-              }
+              to="/cart"
+              onClick={() => setMobileMenu(false)}
               className="block px-5 py-4 border-b"
             >
-              {item.label}
+              🛒 Cart ({cartCount})
             </NavLink>
 
-          ))}
+            <NavLink
+              to="/wishlist"
+              onClick={() => setMobileMenu(false)}
+              className="block px-5 py-4 border-b"
+            >
+              ❤️ Wishlist
+            </NavLink>
+          </>
+        )}
 
-        </div>
+        <NavLink
+          to="/profile"
+          onClick={() => setMobileMenu(false)}
+          className="block px-5 py-4 border-b"
+        >
+          👤 Profile
+        </NavLink>
 
-      )}
+        <button
+          onClick={() => {
+            handleLogout();
+            setMobileMenu(false);
+          }}
+          className="
+            w-full
+            text-left
+            px-5
+            py-4
+            text-red-600
+            font-semibold
+          "
+        >
+          🚪 Logout
+        </button>
+
+      </div>
+    )}
+
+  </div>
+)}
 
     </header>
   );
