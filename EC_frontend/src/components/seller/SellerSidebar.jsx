@@ -8,7 +8,6 @@ import {
   FaBoxOpen,
   FaShoppingBag,
   FaUserCircle,
-  FaSignOutAlt,
   FaTimes,
 } from "react-icons/fa";
 
@@ -18,6 +17,7 @@ const SellerSidebar = ({
   sidebarOpen,
   setSidebarOpen,
 }) => {
+
   const navigate = useNavigate();
 
   const { logout } = useAuth();
@@ -52,38 +52,40 @@ const SellerSidebar = ({
 
   return (
     <>
-      {/* Overlay */}
+      {/* Mobile Overlay */}
 
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-40 lg:hidden"
-          onClick={() =>
-            setSidebarOpen(false)
-          }
+          onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <aside
         className={`
+          bg-slate-900
+          text-white
+          w-64
+          min-h-screen
+          flex
+          flex-col
+          flex-shrink-0
+
           fixed
           top-0
           left-0
           z-50
-          w-64
-          h-screen
-          bg-slate-900
-          text-white
-          flex
-          flex-col
           transition-transform
           duration-300
+
           ${
             sidebarOpen
               ? "translate-x-0"
               : "-translate-x-full"
           }
+
+          lg:relative
           lg:translate-x-0
-          lg:static
         `}
       >
 
@@ -105,9 +107,7 @@ const SellerSidebar = ({
 
           <button
             className="lg:hidden"
-            onClick={() =>
-              setSidebarOpen(false)
-            }
+            onClick={() => setSidebarOpen(false)}
           >
             <FaTimes size={22} />
           </button>
@@ -116,16 +116,14 @@ const SellerSidebar = ({
 
         {/* Menu */}
 
-        <nav className="mt-6 px-3 space-y-2 flex-1">
+        <nav className="flex-1 mt-6 px-3 space-y-2">
 
           {menus.map((menu) => (
 
             <NavLink
               key={menu.path}
               to={menu.path}
-              onClick={() =>
-                setSidebarOpen(false)
-              }
+              onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
                 `
                   flex
@@ -153,32 +151,8 @@ const SellerSidebar = ({
 
         </nav>
 
-        {/* Logout */}
-
-        <div className="p-3 border-t border-slate-700">
-
-          <button
-            onClick={handleLogout}
-            className="
-              w-full
-              flex
-              items-center
-              justify-center
-              gap-3
-              bg-red-600
-              hover:bg-red-700
-              py-3
-              rounded-xl
-              transition
-            "
-          >
-            <FaSignOutAlt />
-            Logout
-          </button>
-
-        </div>
-
       </aside>
+
     </>
   );
 };
