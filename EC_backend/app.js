@@ -24,16 +24,23 @@ const __dirname = path.dirname(__filename);
 
 //Middleware
 
-/*app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  })
-); */
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+];
 
 app.use(
   cors({
-    origin: "*",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(
+        new Error("Not allowed by CORS")
+      );
+    },
+    credentials: true,
   })
 );
 
