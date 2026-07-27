@@ -135,6 +135,10 @@ export const updateCategory = async (
   if (description) {
     category.description = description.trim();
   }
+  if (categoryData.isActive !== undefined) {
+  category.isActive =
+    categoryData.isActive === "true";
+}
 
   // Replace Category Image
   if (file) {
