@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import {
   FaTachometerAlt,
@@ -7,25 +7,13 @@ import {
   FaTags,
   FaShoppingBag,
   FaUserCircle,
-  FaSignOutAlt,
   FaTimes,
 } from "react-icons/fa";
-
-import useAuth from "../../hooks/useAuth";
 
 const AdminSidebar = ({
   sidebarOpen,
   setSidebarOpen,
 }) => {
-  const navigate = useNavigate();
-
-  const { logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-
   const menus = [
     {
       title: "Dashboard",
@@ -66,24 +54,20 @@ const AdminSidebar = ({
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-40 lg:hidden"
-          onClick={() =>
-            setSidebarOpen(false)
-          }
+          onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <aside
         className={`
           fixed
-          top-0
+          inset-y-0
           left-0
           z-50
           w-64
-          h-screen
           bg-slate-900
           text-white
-          flex
-          flex-col
+          transform
           transition-transform
           duration-300
           ${
@@ -93,6 +77,9 @@ const AdminSidebar = ({
           }
           lg:translate-x-0
           lg:static
+          lg:flex-shrink-0
+          flex
+          flex-col
         `}
       >
         {/* Logo */}
@@ -111,13 +98,9 @@ const AdminSidebar = ({
 
           </div>
 
-          {/* Close Button */}
-
           <button
             className="lg:hidden"
-            onClick={() =>
-              setSidebarOpen(false)
-            }
+            onClick={() => setSidebarOpen(false)}
           >
             <FaTimes size={22} />
           </button>
@@ -126,60 +109,40 @@ const AdminSidebar = ({
 
         {/* Menu */}
 
-        <nav className="mt-6 px-3 space-y-2 flex-1">
+        <nav className="mt-6 px-3 space-y-2">
 
           {menus.map((menu) => (
 
             <NavLink
               key={menu.path}
               to={menu.path}
-              onClick={() =>
-                setSidebarOpen(false)
-              }
+              onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${
-                  isActive
-                    ? "bg-blue-600"
-                    : "hover:bg-slate-800"
-                }`
+                `
+                  flex
+                  items-center
+                  gap-3
+                  px-4
+                  py-3
+                  rounded-xl
+                  transition
+                  ${
+                    isActive
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-slate-800"
+                  }
+                `
               }
             >
               {menu.icon}
 
-              {menu.title}
+              <span>{menu.title}</span>
 
             </NavLink>
 
           ))}
 
         </nav>
-
-        {/* Logout */}
-
-        <div className="p-3 border-t border-slate-700">
-
-          <button
-            onClick={handleLogout}
-            className="
-              w-full
-              flex
-              items-center
-              justify-center
-              gap-3
-              bg-red-600
-              hover:bg-red-700
-              py-3
-              rounded-xl
-              transition
-            "
-          >
-            <FaSignOutAlt />
-
-            Logout
-
-          </button>
-
-        </div>
 
       </aside>
     </>

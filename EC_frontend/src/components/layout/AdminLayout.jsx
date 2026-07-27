@@ -9,7 +9,7 @@ const AdminLayout = () => {
     useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-100 flex">
+    <div className="flex min-h-screen bg-slate-100">
 
       <AdminSidebar
         sidebarOpen={sidebarOpen}
@@ -22,7 +22,7 @@ const AdminLayout = () => {
           setSidebarOpen={setSidebarOpen}
         />
 
-        <main className="flex-1 p-4 sm:p-6">
+        <main className="flex-1 p-4 sm:p-6 overflow-x-auto">
           <Outlet />
         </main>
 

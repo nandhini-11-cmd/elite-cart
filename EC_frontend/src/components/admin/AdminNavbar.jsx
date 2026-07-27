@@ -74,7 +74,7 @@ const AdminNavbar = ({
                 justify-center
               "
             >
-              3
+              0
             </span>
 
           </button>
