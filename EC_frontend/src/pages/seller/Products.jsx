@@ -11,11 +11,15 @@ import {
   getSellerProducts,
   deleteProduct,
 } from "../../services/sellerService";
+
 import { Link } from "react-router-dom";
-import { FaPlus, FaSearch } from "react-icons/fa";
+
+import {
+  FaPlus,
+  FaSearch,
+} from "react-icons/fa";
 
 const Products = () => {
-
   const [products, setProducts] =
     useState([]);
 
@@ -23,40 +27,29 @@ const Products = () => {
     useState(true);
 
   const fetchProducts = async () => {
-
     try {
-
       const data =
         await getSellerProducts();
 
       setProducts(data.products);
-
     } catch (error) {
-
       console.log(error);
 
       toast.error(
         "Failed to fetch products"
       );
-
     } finally {
-
       setLoading(false);
-
     }
-
   };
 
   useEffect(() => {
-
     fetchProducts();
-
   }, []);
 
   const handleDelete = async (
     id
   ) => {
-
     const confirmDelete =
       window.confirm(
         "Are you sure you want to delete this product?"
@@ -65,7 +58,6 @@ const Products = () => {
     if (!confirmDelete) return;
 
     try {
-
       await deleteProduct(id);
 
       toast.success(
@@ -73,82 +65,106 @@ const Products = () => {
       );
 
       fetchProducts();
-
     } catch (error) {
-
       toast.error(
         error.response?.data?.message ||
           "Delete Failed"
       );
-
     }
-
   };
 
   if (loading) {
     return (
-      <p className="text-center">
+      <p className="text-center py-10">
         Loading...
       </p>
     );
   }
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
 
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+      {/* Header */}
 
-  <h1 className="text-3xl font-bold">
-    Seller Products
-  </h1>
-
-  <div className="flex gap-3">
-
-    <div className="relative">
-
-      <FaSearch
-        className="absolute left-3 top-3 text-gray-400"
-      />
-
-      <input
-        type="text"
-        placeholder="Search products..."
+      <div
         className="
-          pl-10
-          pr-4
-          py-2
-          border
-          rounded-xl
-          outline-none
-          w-72
+          flex
+          flex-col
+          lg:flex-row
+          lg:items-center
+          lg:justify-between
+          gap-4
+          mb-8
         "
-      />
+      >
 
-    </div>
+        <h1 className="text-2xl sm:text-3xl font-bold">
+          Seller Products
+        </h1>
 
-    <Link
-      to="/seller/products/add"
-      className="
-        bg-blue-600
-        hover:bg-blue-700
-        text-white
-        px-5
-        rounded-xl
-        flex
-        items-center
-        gap-2
-      "
-    >
+        <div
+          className="
+            flex
+            flex-col
+            sm:flex-row
+            gap-3
+            w-full
+            lg:w-auto
+          "
+        >
 
-      <FaPlus />
+          {/* Search */}
 
-      Add Product
+          <div className="relative flex-1">
 
-    </Link>
+            <FaSearch
+              className="absolute left-3 top-3 text-gray-400"
+            />
 
-  </div>
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="
+                w-full
+                sm:w-72
+                pl-10
+                pr-4
+                py-2
+                border
+                rounded-xl
+                outline-none
+              "
+            />
 
-</div>
+          </div>
+
+          {/* Add */}
+
+          <Link
+            to="/seller/products/add"
+            className="
+              bg-blue-600
+              hover:bg-blue-700
+              text-white
+              px-5
+              py-2
+              rounded-xl
+              flex
+              items-center
+              justify-center
+              gap-2
+            "
+          >
+
+            <FaPlus />
+
+            Add Product
+
+          </Link>
+
+        </div>
+
+      </div>
 
       <ProductTable
         products={products}

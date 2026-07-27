@@ -8,15 +8,33 @@ const DashboardCard = ({
         bg-white
         rounded-2xl
         shadow-sm
-        p-6
         border
+        p-5
+        sm:p-6
+        hover:shadow-md
+        transition
       "
     >
-      <h3 className="text-gray-500 text-sm">
+      <p
+        className="
+          text-gray-500
+          text-sm
+          sm:text-base
+        "
+      >
         {title}
-      </h3>
+      </p>
 
-      <h2 className="text-3xl font-bold text-blue-600 mt-3">
+      <h2
+        className="
+          text-3xl
+          sm:text-4xl
+          font-bold
+          text-blue-600
+          mt-3
+          break-words
+        "
+      >
         {value}
       </h2>
     </div>

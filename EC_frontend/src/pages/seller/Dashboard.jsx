@@ -4,9 +4,11 @@ import DashboardCard from "../../components/seller/DashboardCard";
 import { getSellerDashboard } from "../../services/sellerService";
 
 const Dashboard = () => {
-  const [dashboard, setDashboard] = useState(null);
+  const [dashboard, setDashboard] =
+    useState(null);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
 
   useEffect(() => {
     fetchDashboard();
@@ -14,7 +16,8 @@ const Dashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const data = await getSellerDashboard();
+      const data =
+        await getSellerDashboard();
 
       setDashboard(data);
     } catch (error) {
@@ -25,22 +28,42 @@ const Dashboard = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <p className="text-center py-10">
+        Loading...
+      </p>
+    );
   }
 
   if (!dashboard) {
-    return <p>Failed to load dashboard.</p>;
+    return (
+      <p className="text-center py-10 text-red-500">
+        Failed to load dashboard.
+      </p>
+    );
   }
 
   return (
-    <>
-      <h1 className="text-3xl font-bold mb-8">
+    <div className="max-w-7xl mx-auto">
+
+      {/* Heading */}
+
+      <h1 className="text-2xl sm:text-3xl font-bold mb-8">
         Seller Dashboard
       </h1>
 
       {/* Dashboard Cards */}
 
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+      <div
+        className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          xl:grid-cols-4
+          gap-6
+          mb-10
+        "
+      >
 
         <DashboardCard
           title="Total Products"
@@ -66,9 +89,9 @@ const Dashboard = () => {
 
       {/* Recent Orders */}
 
-      <div className="bg-white rounded-2xl shadow-sm p-6">
+      <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
 
-        <h2 className="text-2xl font-bold mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6">
           Recent Orders
         </h2>
 
@@ -82,7 +105,7 @@ const Dashboard = () => {
 
           <div className="overflow-x-auto">
 
-            <table className="w-full">
+            <table className="w-full min-w-[700px]">
 
               <thead>
 
@@ -110,36 +133,47 @@ const Dashboard = () => {
 
               <tbody>
 
-                {dashboard.recentOrders.map((order) => (
+                {dashboard.recentOrders.map(
+                  (order) => (
 
-                  <tr
-                    key={order._id}
-                    className="border-b"
-                  >
+                    <tr
+                      key={order._id}
+                      className="border-b hover:bg-slate-50 transition"
+                    >
 
-                    <td className="py-4">
-                      {order.orderNumber}
-                    </td>
+                      <td className="py-4 font-medium">
+                        {order.orderNumber}
+                      </td>
 
-                    <td>
-                      {order.user?.name}
-                    </td>
+                      <td>
+                        {order.user?.name}
+                      </td>
 
-                    <td>
-                      ₹{order.totalAmount}
-                    </td>
+                      <td className="font-semibold">
+                        ₹{order.totalAmount}
+                      </td>
 
-                    <td>
+                      <td>
 
-                      <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm">
-                        {order.orderStatus}
-                      </span>
+                        <span
+                          className="
+                            px-3
+                            py-1
+                            rounded-full
+                            bg-yellow-100
+                            text-yellow-700
+                            text-sm
+                          "
+                        >
+                          {order.orderStatus}
+                        </span>
 
-                    </td>
+                      </td>
 
-                  </tr>
+                    </tr>
 
-                ))}
+                  )
+                )}
 
               </tbody>
 
@@ -151,7 +185,7 @@ const Dashboard = () => {
 
       </div>
 
-    </>
+    </div>
   );
 };
 

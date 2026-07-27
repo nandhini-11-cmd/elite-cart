@@ -1,4 +1,5 @@
 import {
+  FaBars,
   FaBell,
   FaUserCircle,
   FaSignOutAlt,
@@ -8,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 
-const SellerNavbar = () => {
+const SellerNavbar = ({
+  setSidebarOpen,
+}) => {
   const navigate = useNavigate();
 
   const { logout } = useAuth();
@@ -19,17 +22,35 @@ const SellerNavbar = () => {
   };
 
   return (
-    <header className="bg-white shadow px-6 py-4">
+    <header className="bg-white shadow px-4 sm:px-6 py-4">
 
       <div className="flex items-center justify-between">
 
-        <h1 className="text-2xl font-bold text-slate-800">
-          Seller Dashboard
-        </h1>
+        {/* Left */}
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
 
-          {/* Notification */}
+          <button
+            onClick={() =>
+              setSidebarOpen(true)
+            }
+            className="lg:hidden"
+          >
+            <FaBars
+              size={22}
+              className="text-slate-700"
+            />
+          </button>
+
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-800">
+            Seller Dashboard
+          </h1>
+
+        </div>
+
+        {/* Right */}
+
+        <div className="flex items-center gap-4 sm:gap-6">
 
           <button className="relative">
 
@@ -40,19 +61,16 @@ const SellerNavbar = () => {
 
           </button>
 
-          {/* Profile */}
-
           <FaUserCircle
-            size={34}
+            size={32}
             className="text-slate-700"
           />
-
-          {/* Logout */}
 
           <button
             onClick={handleLogout}
             className="
-              flex
+              hidden
+              sm:flex
               items-center
               gap-2
               bg-red-600

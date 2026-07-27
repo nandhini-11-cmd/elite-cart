@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Formik, Form } from "formik";
 
-import toast from "react-hot-toast";
-
 import Input from "../common/Input";
 import Button from "../common/Button";
 
@@ -12,13 +10,15 @@ const CategoryForm = ({
   onSubmit,
   isEdit = false,
 }) => {
-
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] =
+    useState("");
 
   useEffect(() => {
     if (initialValues.categoryImage?.url) {
-    setPreview(initialValues.categoryImage.url);
-}
+      setPreview(
+        initialValues.categoryImage.url
+      );
+    }
   }, [initialValues]);
 
   return (
@@ -35,7 +35,9 @@ const CategoryForm = ({
         handleBlur,
         setFieldValue,
       }) => (
-        <Form className="space-y-6">          <Input
+        <Form className="space-y-6">
+
+          <Input
             label="Category Name"
             name="categoryName"
             value={values.categoryName}
@@ -65,6 +67,7 @@ const CategoryForm = ({
                 outline-none
                 focus:ring-2
                 focus:ring-blue-500
+                resize-none
               "
             />
 
@@ -79,12 +82,15 @@ const CategoryForm = ({
             <input
               type="file"
               accept="image/*"
+              className="w-full"
               onChange={(e) => {
-
                 const file =
                   e.currentTarget.files[0];
 
-                setFieldValue("categoryImage", file);
+                setFieldValue(
+                  "categoryImage",
+                  file
+                );
 
                 if (file) {
                   setPreview(
@@ -98,17 +104,23 @@ const CategoryForm = ({
 
           {preview && (
 
-            <img
-              src={preview}
-              alt="Preview"
-              className="
-                w-36
-                h-36
-                object-cover
-                rounded-xl
-                border
-              "
-            />
+            <div className="flex justify-center">
+
+              <img
+                src={preview}
+                alt="Preview"
+                className="
+                  w-28
+                  h-28
+                  sm:w-36
+                  sm:h-36
+                  object-cover
+                  rounded-xl
+                  border
+                "
+              />
+
+            </div>
 
           )}
 
@@ -125,7 +137,9 @@ const CategoryForm = ({
               }
             />
 
-            <label>Active Category</label>
+            <label>
+              Active Category
+            </label>
 
           </div>
 
@@ -135,7 +149,9 @@ const CategoryForm = ({
               ? "Update Category"
               : "Add Category"}
 
-          </Button>        </Form>
+          </Button>
+
+        </Form>
       )}
     </Formik>
   );

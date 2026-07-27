@@ -10,25 +10,41 @@ import {
 import SellerOrderTable from "../../components/seller/SellerOrderTable";
 
 const Orders = () => {
-
   const [orders, setOrders] =
     useState([]);
+
+  const [loading, setLoading] =
+    useState(true);
 
   useEffect(() => {
     fetchOrders();
   }, []);
 
   const fetchOrders = async () => {
-    const data =
-      await getSellerOrders();
+    try {
+      const data =
+        await getSellerOrders();
 
-    setOrders(data);
+      setOrders(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return (
-    <div>
+  if (loading) {
+    return (
+      <p className="text-center py-10">
+        Loading Orders...
+      </p>
+    );
+  }
 
-      <h1 className="text-3xl font-bold mb-8">
+  return (
+    <div className="max-w-7xl mx-auto">
+
+      <h1 className="text-2xl sm:text-3xl font-bold mb-8">
         Seller Orders
       </h1>
 

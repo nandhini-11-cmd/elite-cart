@@ -11,8 +11,8 @@ import {
 
 import CategoryTable from "../../components/admin/CategoryTable";
 import CategoryForm from "../../components/admin/CategoryForm";
-const Categories = () => {
 
+const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   const [search, setSearch] = useState("");
@@ -25,15 +25,11 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-
       const data = await getCategories();
 
       setCategories(data.categories || data);
-
     } catch (error) {
-
       toast.error("Failed to load categories");
-
     }
   };
 
@@ -47,7 +43,8 @@ const Categories = () => {
     categoryImage: "",
     isActive: true,
   };
-    const handleSubmit = async (values) => {
+
+  const handleSubmit = async (values) => {
     try {
       const formData = new FormData();
 
@@ -66,7 +63,9 @@ const Categories = () => {
         values.isActive
       );
 
-      if (values.categoryImage instanceof File) {
+      if (
+        values.categoryImage instanceof File
+      ) {
         formData.append(
           "categoryImage",
           values.categoryImage
@@ -74,7 +73,6 @@ const Categories = () => {
       }
 
       if (selectedCategory) {
-
         await updateCategory(
           selectedCategory._id,
           formData
@@ -83,15 +81,12 @@ const Categories = () => {
         toast.success(
           "Category Updated Successfully"
         );
-
       } else {
-
         await createCategory(formData);
 
         toast.success(
           "Category Added Successfully"
         );
-
       }
 
       fetchCategories();
@@ -99,19 +94,15 @@ const Categories = () => {
       setShowForm(false);
 
       setSelectedCategory(null);
-
     } catch (error) {
-
       toast.error(
         error.response?.data?.message ||
           "Operation Failed"
       );
-
     }
   };
 
   const handleDelete = async (id) => {
-
     if (
       !window.confirm(
         "Delete this category?"
@@ -121,7 +112,6 @@ const Categories = () => {
     }
 
     try {
-
       await deleteCategory(id);
 
       toast.success(
@@ -129,14 +119,11 @@ const Categories = () => {
       );
 
       fetchCategories();
-
     } catch (error) {
-
       toast.error(
         error.response?.data?.message ||
           "Delete Failed"
       );
-
     }
   };
 
@@ -148,11 +135,22 @@ const Categories = () => {
     );
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
 
-      <div className="flex justify-between items-center mb-6">
+      {/* Header */}
 
-        <h1 className="text-3xl font-bold">
+      <div
+        className="
+          flex
+          flex-col
+          sm:flex-row
+          sm:justify-between
+          sm:items-center
+          gap-4
+          mb-6
+        "
+      >
+        <h1 className="text-2xl sm:text-3xl font-bold">
           Categories
         </h1>
 
@@ -163,16 +161,20 @@ const Categories = () => {
           }}
           className="
             bg-blue-600
+            hover:bg-blue-700
             text-white
             px-5
-            py-2
+            py-3
             rounded-xl
+            w-full
+            sm:w-auto
           "
         >
           + Add Category
         </button>
-
       </div>
+
+      {/* Search */}
 
       <input
         type="text"
@@ -191,20 +193,21 @@ const Categories = () => {
         "
       />
 
+      {/* Table */}
+
       <CategoryTable
         categories={filteredCategories}
         onEdit={(category) => {
-
           setSelectedCategory(category);
 
           setShowForm(true);
-
         }}
         onDelete={handleDelete}
       />
 
-      {showForm && (
+      {/* Modal */}
 
+      {showForm && (
         <div
           className="
             fixed
@@ -213,23 +216,25 @@ const Categories = () => {
             flex
             justify-center
             items-center
+            p-4
             z-50
           "
         >
-
           <div
             className="
               bg-white
-              p-8
               rounded-2xl
               w-full
               max-w-2xl
+              max-h-[90vh]
+              overflow-y-auto
+              p-6
             "
           >
-
             <CategoryForm
               initialValues={
-                selectedCategory || initialValues
+                selectedCategory ||
+                initialValues
               }
               onSubmit={handleSubmit}
               isEdit={!!selectedCategory}
@@ -243,6 +248,7 @@ const Categories = () => {
                 mt-4
                 w-full
                 bg-gray-500
+                hover:bg-gray-600
                 text-white
                 py-3
                 rounded-xl
@@ -250,13 +256,9 @@ const Categories = () => {
             >
               Close
             </button>
-
           </div>
-
         </div>
-
       )}
-
     </div>
   );
 };
