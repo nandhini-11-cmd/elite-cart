@@ -69,7 +69,6 @@ EliteCart
 - User Login
 - JWT Authentication
 - Role Based Authorization
-- Forgot Password (Basic Flow)
 
 ---
 
@@ -87,7 +86,6 @@ EliteCart
 - Razorpay Integration
 - Orders
 - Order Details
-- Wishlist UI
 
 ---
 
@@ -100,12 +98,10 @@ EliteCart
 - Edit Product
 - Delete Product
 - Product Search
-- Pagination
 - Stock Status
 - Order Management
 - Update Order Status
 - Seller Profile (UI)
-
 ---
 
 ## Admin Module
@@ -132,7 +128,6 @@ EliteCart
 - Wishlist APIs
 - Order APIs
 - Payment APIs
-- Review APIs
 - Buyer APIs
 - Seller APIs
 - Admin APIs
@@ -169,7 +164,7 @@ EliteCart
 
 - Desktop
 - Tablet
-- Mobile
+- Mobile -Buyer module fully responsive. Admin and Seller dashboard have to modify for mobile view. 
 
 ---
 
@@ -179,7 +174,7 @@ EliteCart
 - Admin Product Management
 - Admin User Management
 - Admin Order Management
-- Wishlist Backend
+- Wishlist 
 - Product Reviews
 
 
