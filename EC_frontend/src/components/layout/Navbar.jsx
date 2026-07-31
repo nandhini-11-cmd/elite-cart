@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import useCart from "../../hooks/useCart";
+import useWishlist from "../../hooks/useWishlist";
 import useAuth from "../../hooks/useAuth";
 import { ROLES } from "../../utils/roles";
 
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [mobileMenu, setMobileMenu] =
     useState(false);
     const { cartCount } = useCart();
+    const { wishlistCount,} = useWishlist();
     const { user, logout } = useAuth();
 
 const navigate = useNavigate();
@@ -119,33 +121,40 @@ const handleLogout = () => {
       {
         user.role === ROLES.BUYER && (
           <>
-            <button className="relative">
+            <Link
+  to="/wishlist"
+  className="relative"
+>
 
-              <FaHeart
-                size={22}
-                className="text-slate-700"
-              />
+  <FaHeart
+    size={22}
+    className="
+      text-slate-700
+      hover:text-red-500
+      transition
+    "
+  />
 
-              <span
-                className="
-                  absolute
-                  -top-2
-                  -right-2
-                  bg-red-500
-                  text-white
-                  text-xs
-                  rounded-full
-                  w-5
-                  h-5
-                  flex
-                  items-center
-                  justify-center
-                "
-              >
-                0
-              </span>
+  <span
+    className="
+      absolute
+      -top-2
+      -right-2
+      bg-red-500
+      text-white
+      text-xs
+      rounded-full
+      w-5
+      h-5
+      flex
+      items-center
+      justify-center
+    "
+  >
+    {wishlistCount}
+  </span>
 
-            </button>
+</Link>
 
             <Link
               to="/cart"
@@ -298,7 +307,7 @@ const handleLogout = () => {
               onClick={() => setMobileMenu(false)}
               className="block px-5 py-4 border-b"
             >
-              ❤️ Wishlist
+              ❤️ Wishlist ({wishlistCount})
             </NavLink>
           </>
         )}

@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 
 import AuthProvider from "./context/AuthContext";
 import CartProvider from "./context/CartContext";
+import { WishlistProvider } from "./context/WishlistContext";
 
 import App from "./App";
 
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
+        <WishlistProvider>
         <CartProvider>
         <Toaster
           position="top-right"
@@ -24,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
         <App />
         </CartProvider>
+        </WishlistProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
