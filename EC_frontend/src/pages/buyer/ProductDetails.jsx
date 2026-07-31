@@ -9,6 +9,7 @@ import ProductImageGallery from "../../components/buyer/ProductImageGallery";
 import ProductInfo from "../../components/buyer/ProductInfo";
 import ProductDescription from "../../components/buyer/ProductDescription";
 import RelatedProducts from "../../components/buyer/RelatedProducts";
+import ReviewSection from "../../components/buyer/ReviewSection";
 
 
 const ProductDetails = () => {
@@ -100,6 +101,7 @@ const ProductDetails = () => {
         </div>
 
         <ProductDescription product={product} />
+        <ReviewSection product={product} />
 
         <RelatedProducts
   products={relatedProducts}
