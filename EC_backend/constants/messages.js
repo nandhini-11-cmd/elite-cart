@@ -58,9 +58,12 @@ PAYMENT_SUCCESS: "Payment completed successfully.",
 INVALID_PAYMENT_SIGNATURE: "Invalid payment signature.",
 
   // Review
-  REVIEW_ADDED: "Review added successfully.",
-  SELLER_DASHBOARD_FETCHED:
-  "Seller dashboard fetched successfully.",
-  ADMIN_DASHBOARD_FETCHED:
-  "Admin dashboard fetched successfully.",
+  REVIEW_CREATED: "Review added successfully.",
+REVIEW_UPDATED: "Review updated successfully.",
+REVIEW_DELETED: "Review deleted successfully.",
+REVIEWS_FETCHED: "Reviews fetched successfully.",
+REVIEW_ALREADY_EXISTS: "You have already reviewed this product.",
+REVIEW_NOT_FOUND: "Review not found.",
+PRODUCT_NOT_PURCHASED:
+  "You haven't purchased this product. Only delivered products can be reviewed.",
 };

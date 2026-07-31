@@ -3,6 +3,8 @@ import Product from "../models/Product.js";
 
 import { STATUS_CODES } from "../constants/statusCodes.js";
 import { MESSAGES } from "../constants/messages.js";
+import Order from "../models/Order.js";
+import { ORDER_STATUS } from "../constants/orderConstants.js";
 
 /* -------------------------------------------------------------------------- */
 /*                     Update Product Rating Helper                            */
@@ -50,6 +52,8 @@ export const addReview = async (
     isActive: true,
   });
 
+ 
+
   if (!product) {
     const error = new Error(
       MESSAGES.PRODUCT_NOT_FOUND
@@ -60,6 +64,26 @@ export const addReview = async (
     throw error;
   }
 
+
+   /**
+ * Check Whether User Purchased The Product
+ */
+const purchasedOrder = await Order.findOne({
+  user: userId,
+  orderStatus: ORDER_STATUS.DELIVERED,
+  "orderItems.product": productId,
+});
+
+if (!purchasedOrder) {
+  const error = new Error(
+    MESSAGES.PRODUCT_NOT_PURCHASED
+  );
+
+  error.statusCode =
+    STATUS_CODES.FORBIDDEN;
+
+  throw error;
+}
   const existingReview = await Review.findOne({
     user: userId,
     product: productId,
