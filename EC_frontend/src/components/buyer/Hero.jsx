@@ -56,7 +56,7 @@ const Hero = () => {
               </span>
 
               <span className="text-yellow-300 font-medium">
-                ⭐⭐⭐⭐⭐ 1000+ Happy Customers
+                ⭐⭐⭐⭐⭐ 100+ Happy Customers
               </span>
 
             </div>
@@ -183,7 +183,7 @@ const Hero = () => {
               <div>
 
                 <h2 className="text-3xl font-bold">
-                  1+
+                  100+
                 </h2>
 
                 <p className="text-blue-200">
