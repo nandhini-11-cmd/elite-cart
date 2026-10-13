@@ -112,10 +112,6 @@ EliteCart
 - Add Category
 - Edit Category
 - Delete Category
-- Product Management (Coming Soon)
-- User Management (Coming Soon)
-- Order Management (Coming Soon)
-- Profile (Coming Soon)
 
 ---
 
