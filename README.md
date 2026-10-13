@@ -1,11 +1,11 @@
-# 🛒 Elite Cart - MERN Stack E-Commerce Application
+# Elite Cart - MERN Stack E-Commerce Application
 
 Elite Cart is a full-stack E-Commerce web application developed using the MERN Stack. The application 
 supports three different user roles: Buyer, Seller, and Admin, each with dedicated dashboards and functionalities.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 ### Frontend
 https://elitecartshoppy.netlify.app
@@ -15,7 +15,7 @@ https://elite-cart-backend.onrender.com
 
 ---
 
-## 👨‍💻 Tech Stack
+## Tech Stack
 
 ### Frontend
 - React.js
@@ -41,7 +41,7 @@ https://elite-cart-backend.onrender.com
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 EliteCart
@@ -152,7 +152,7 @@ EliteCart
 
 ---
 
-# 🔐 Authentication
+# Authentication
 
 - JWT Token
 - Protected Routes
@@ -160,11 +160,11 @@ EliteCart
 
 ---
 
-# 📱 Responsive Design
+# Responsive Design
 
 - Desktop
 - Tablet
-- Mobile -Buyer module fully responsive. Admin and Seller dashboard have to modify for mobile view. 
+- Mobile
 
 ## Developed By
 
