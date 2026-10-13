@@ -61,7 +61,7 @@ EliteCart
 
 ---
 
-# ✅ Completed Modules
+# ✅ Modules
 
 ## Authentication
 
@@ -165,18 +165,6 @@ EliteCart
 - Desktop
 - Tablet
 - Mobile -Buyer module fully responsive. Admin and Seller dashboard have to modify for mobile view. 
-
----
-
-# 🚧 Upcoming Enhancements
-
-- Seller Profile Management
-- Admin Product Management
-- Admin User Management
-- Admin Order Management
-- Wishlist 
-- Product Reviews
-
 
 ## Developed By
 
